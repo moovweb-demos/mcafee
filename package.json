@@ -1,5 +1,5 @@
 {
-  "name": "layer0-traditional-poc-template",
+  "name": "mcafee",
   "devDependencies": {
     "@layer0/cli": "^3.4.0",
     "@layer0/core": "^3.4.0",

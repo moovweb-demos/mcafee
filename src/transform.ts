@@ -22,6 +22,13 @@ export default function transform(response: Response, request: Request) {
     // ...
     // ...
 
+    $('a[href^="https://www.mcafee.com"]').map((i, el) => {
+      var link = $(el).attr('href') || '';
+      $(el).attr('href', link.replace(/.+\.com\//, '/'));
+    })
+
     response.body = $.html()
+                      .replace(/https:\/\/www\.mcafee\.com\//g, '/')
+
   }
 }

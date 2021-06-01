@@ -8,12 +8,10 @@ export default new Router()
 
   // Home page
   .match('/', shoppingFlowRouteHandler)
+  .match('/en-us/index.html', shoppingFlowRouteHandler)
 
-  // PLP page
-  .match('/collections/:path*', shoppingFlowRouteHandler)
-
-  // PDP page
-  .match('/products/:path*', shoppingFlowRouteHandler)
+  // PDP
+  .match('/en-us/antivirus/mcafee-total-protection.html', shoppingFlowRouteHandler)
 
   // example route for cacheable assets:
   .match('/images/:path*', ({ cache, proxy }) => {
