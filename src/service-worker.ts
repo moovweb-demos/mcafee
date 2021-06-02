@@ -22,17 +22,17 @@ new Prefetcher({
         callback: deepFetchPDPImages,
       },
       {
-        selector: '.indiv-product img',
-        maxMatches: 2,
-        attribute: 'data-src',
+        selector: '#banner .bg-stretch img',
+        maxMatches: 1,
+        attribute: 'src',
         as: 'image',
-        callback: deepFetchPLPImages,
+        callback: deepFetchArticleImages,
       },
     ]),
   ],
 })
   .route()
-  .cache(/^https:\/\/assets-global\.website-files\.com\/.*/)
+  // .cache(/^https:\/\/assets-global\.website-files\.com\/.*/)
   // ENTER REGULAR EXPRESSION SELECTOR FOR IMAGES YOU WANT TO PREFETCH //
   // (usualy as CDN base domain name followed by ".*" as general selecor) //
 
@@ -48,17 +48,12 @@ function deepFetchPDPImages({ $el, el, $ }: DeepFetchCallbackParam) {
 
 ///////////////////////////////////////////////
 // Callback function for PLP image selector //
-function deepFetchPLPImages({ $el, el, $ }: DeepFetchCallbackParam) {
+function deepFetchArticleImages({ $el, el, $ }: DeepFetchCallbackParam) {
 
-  // Example implementation if image source is provided in following format: //
-  // <img data-src="https://www.cdn-url.com/image/image_id/{width}"          //
-    const urlTemplate = $el.attr('data-src')
-    const width = "300"
-    if (urlTemplate) {
-      const url = urlTemplate.replace(/\{width\}/,width)
-      // console.log("[][]][][[][]][][][][][[]][[][][]\nPrefetching "+url+"\n")
-      prefetch(url, 'image')
-    }
+  const url = $el.attr('src')
+  console.log("[][]][][[][]][][][][][[]][[][][]\nPrefetching Article: "+url+"\n")
+  prefetch(url, 'image')
+
 }
 
 // function logPrefetchedContent({$el}) { // for testing

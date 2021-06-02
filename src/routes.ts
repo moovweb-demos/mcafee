@@ -12,9 +12,15 @@ export default new Router()
 
   // PDP
   .match('/en-us/antivirus/mcafee-total-protection.html', shoppingFlowRouteHandler)
+  .match('/enterprise/en-us/about/inclusion-diversity.html', shoppingFlowRouteHandler)
 
-  // example route for cacheable assets:
-  .match('/images/:path*', ({ cache, proxy }) => {
+
+  // Images:
+  .match('/en-us/antivirus/mcafee-total-protection/_jcr_content/:path*', ({ cache, proxy }) => {
+    cache(CACHE_ASSETS)
+    return proxy('origin')
+  })
+  .match('/enterprise/en-us/img/:path*', ({ cache, proxy }) => {
     cache(CACHE_ASSETS)
     return proxy('origin')
   })
